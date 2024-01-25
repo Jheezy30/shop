@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "724617878199",
+    "project_id": "minimal-social-app-fc551",
+    "storage_bucket": "minimal-social-app-fc551.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:724617878199:android:e21e37460e500afc0b4b32",
+        "android_client_info": {
+          "package_name": "com.example.shop"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAI4XnghPiMxID3L2sGG6vI17EmuKa03Bg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
