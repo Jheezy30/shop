@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:shop/components/my_back_button.dart';
 
 class ProfilePage extends StatelessWidget {
   ProfilePage({super.key});
@@ -11,7 +12,6 @@ class ProfilePage extends StatelessWidget {
 
 // future to fetch user details
   Future<DocumentSnapshot<Map<String, dynamic>>> getUserDetails() async {
-
     return await FirebaseFirestore.instance
         .collection("users")
         .doc(currentUser!.email)
@@ -21,11 +21,6 @@ class ProfilePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-        elevation: 0.0,
-        title: const Text("profile"),
-      ),
       backgroundColor: Theme.of(context).colorScheme.background,
       body: FutureBuilder<DocumentSnapshot<Map<String, dynamic>>>(
           future: getUserDetails(),
@@ -47,14 +42,61 @@ class ProfilePage extends StatelessWidget {
               Map<String, dynamic>? user = snapshot.data!.data();
               print(snapshot.data!.data());
 
-              return Column(
-                children: [
-                  Text(user!['email']),
-                  Text(user['username']),
-                ],
+              return Center(
+                child: Column(
+                  children: [
+                    const Padding(
+                      padding: const EdgeInsets.only(
+                        top: 50.0,
+                        left: 25,
+                      ),
+                      child: Row(
+                        children: [
+                          MyBackButton(),
+                        ],
+                      ),
+                    ),
+                    const SizedBox(
+                      height: 25,
+                    ),
+                    //profile pic
+                    Container(
+                      decoration: BoxDecoration(
+                        color: Theme.of(context).colorScheme.primary,
+                        borderRadius: BorderRadius.circular(24),
+                      ),
+                      padding: EdgeInsets.all(25),
+                      child: const Icon(
+                        Icons.person,
+                        size: 64,
+                      ),
+                    ),
+
+                    const SizedBox(
+                      height: 25,
+                    ),
+
+                    //username
+                    Text(
+                      user!['username'],
+                      style: const TextStyle(
+                        fontSize: 24,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+
+                    //
+                    Text(
+                      user['email'],
+                      style: const TextStyle(
+                        color: Colors.grey,
+                      ),
+                    ),
+                  ],
+                ),
               );
             } else {
-              return Text("No data");
+              return const Text("No data");
             }
           }),
     );
